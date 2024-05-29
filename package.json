@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "chart.js": "^4.4.3",
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.6",
     "next": "14.2.3",
     "react": "^18",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
-    "tailwind-merge": "^2.3.0"
+    "simplex-noise": "^4.0.1",
+    "tailwind-merge": "^2.3.0",
+    "victory": "^37.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",
