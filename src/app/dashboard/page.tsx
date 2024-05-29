@@ -61,7 +61,7 @@ const DashboardPage = (props: Props) => {
             </div>
           </div>
           <br />
-          <LampContainer>
+          <LampContainer className="mb-0">
             <motion.h1
               initial={{ opacity: 0.5, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +75,6 @@ const DashboardPage = (props: Props) => {
               Practice motions <br /> and points of order.
             </motion.h1>
           </LampContainer>
-
           <MotionPracticeComponent />
         </div>
       </div>
