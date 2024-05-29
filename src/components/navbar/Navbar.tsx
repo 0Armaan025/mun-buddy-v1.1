@@ -1,20 +1,23 @@
 import React from "react";
 import "./navbar.css";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
     <>
       <nav
-        className=" mx-32 border my-4 rounded-2xl blur-[0.4px] "
+        className=" mx-32 border my-4 rounded-2xl blur-[0.3px] "
         style={{ background: "RGB(255,255,255,0.1)" }}
       >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <span
-            className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-            style={{ fontFamily: "Poppins" }}
-          >
-            M.U.N-Buddy
-          </span>
+          <Link href="/">
+            <span
+              className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              style={{ fontFamily: "Poppins" }}
+            >
+              M.U.N-Buddy
+            </span>
+          </Link>
 
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button
@@ -24,11 +27,13 @@ const Navbar = () => {
               aria-expanded={false}
             >
               <span className="sr-only">Open user menu</span>
-              <img
-                className="w-8 h-8 rounded-full"
-                src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
-                alt="user photo"
-              />
+              <Link href="/dashboard">
+                <img
+                  className="w-8 h-8 rounded-full"
+                  src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
+                  alt="user photo"
+                />
+              </Link>
             </button>
 
             <div
