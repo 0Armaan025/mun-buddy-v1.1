@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { LampContainer } from "@/components/lamp";
 import React from "react";
 import MotionPracticeComponent from "@/components/motionPractice/MotionPracticeComponent";
+import Footer from "@/components/footer/Footer";
 
 type Props = {};
 
@@ -78,6 +79,7 @@ const DashboardPage = (props: Props) => {
           <MotionPracticeComponent />
         </div>
       </div>
+      <Footer />
     </>
   );
 };

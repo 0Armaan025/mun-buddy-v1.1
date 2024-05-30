@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
+import Link from "next/link";
 
 const LeftSideBar = () => {
   const pathname = usePathname();
@@ -10,7 +11,7 @@ const LeftSideBar = () => {
   };
 
   const handleNavigation = (path: string) => {
-    // You can implement your navigation logic here
+    redirect(path);
     console.log(`Navigating to ${path}`);
   };
 
@@ -34,42 +35,45 @@ const LeftSideBar = () => {
           Dashboard
         </h3>
       </div>
-      <div
-        className={`itemDiv flex flex-row justify-start w-full p-2 py-4 px-4 hover:bg-[#080f11] hover:w-full transition-all rounded-md cursor-pointer ${isActive(
-          "/profile"
-        )}`}
-        onClick={() => handleNavigation("/profile")}
-      >
-        <img
-          src="https://cdn-icons-png.flaticon.com/128/206/206853.png"
-          alt="profile"
-          className="w-6 mr-2"
-        />
-        <h3
-          className="text-white mr-4"
-          style={{ fontFamily: "Poppins, sans-serif" }}
+      <Link href="/profile">
+        <div
+          className={`itemDiv flex flex-row justify-start w-full p-2 py-4 px-4 hover:bg-[#080f11] hover:w-full transition-all rounded-md cursor-pointer ${isActive(
+            "/profile"
+          )}`}
         >
-          Profile
-        </h3>
-      </div>
-      <div
-        className={`itemDiv flex flex-row justify-start w-full p-2 py-4 px-4 hover:bg-[#080f11] hover:w-full transition-all rounded-md cursor-pointer ${isActive(
-          "/researches"
-        )}`}
-        onClick={() => handleNavigation("/profile")}
-      >
-        <img
-          src="https://cdn-icons-png.flaticon.com/128/9028/9028717.png"
-          alt="Researches"
-          className="w-6 mr-2"
-        />
-        <h3
-          className="text-white mr-4"
-          style={{ fontFamily: "Poppins, sans-serif" }}
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/206/206853.png"
+            alt="profile"
+            className="w-6 mr-2"
+          />
+          <h3
+            className="text-white mr-4"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            Profile
+          </h3>
+        </div>
+      </Link>
+      <Link href="/researches">
+        <div
+          className={`itemDiv flex flex-row justify-start w-full p-2 py-4 px-4 hover:bg-[#080f11] hover:w-full transition-all rounded-md cursor-pointer ${isActive(
+            "/researches"
+          )}`}
+          onClick={() => handleNavigation("/profile")}
         >
-          Researches
-        </h3>
-      </div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/9028/9028717.png"
+            alt="Researches"
+            className="w-6 mr-2"
+          />
+          <h3
+            className="text-white mr-4"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            Researches
+          </h3>
+        </div>
+      </Link>
       <hr
         style={{
           width: "100%",
