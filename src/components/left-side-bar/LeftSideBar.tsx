@@ -3,7 +3,11 @@ import React from "react";
 import { redirect, usePathname } from "next/navigation";
 import Link from "next/link";
 
-const LeftSideBar = () => {
+type Props = {
+  height: string;
+};
+
+const LeftSideBar = ({ height }: Props) => {
   const pathname = usePathname();
 
   const isActive = (path: string) => {
@@ -16,25 +20,32 @@ const LeftSideBar = () => {
   };
 
   return (
-    <div className="leftSideBar flex flex-col justify-start items-start bg-[#0f191c] w-40 p-2 h-[164vh] rounded-r-md">
-      <div
-        className={`itemDiv flex flex-row justify-center p-2 py-4 px-4 hover:bg-[#080f11] hover:w-full transition-all rounded-md cursor-pointer ${isActive(
-          "/dashboard"
-        )}`}
-        onClick={() => handleNavigation("/")}
-      >
-        <img
-          src="https://cdn-icons-png.flaticon.com/128/2386/2386408.png"
-          alt="dashboard"
-          className="w-6 mr-2"
-        />
-        <h3
-          className="text-white"
-          style={{ fontFamily: "Poppins, sans-serif" }}
+    <div
+      className={
+        "leftSideBar flex flex-col justify-start items-start bg-[#0f191c] w-40 p-2 rounded-r-md"
+      }
+      style={{ height: height }}
+    >
+      <Link href="/dashboard">
+        <div
+          className={`itemDiv flex flex-row justify-center p-2 py-4 px-4 hover:bg-[#080f11] hover:w-full transition-all rounded-md cursor-pointer ${isActive(
+            "/dashboard"
+          )}`}
+          onClick={() => handleNavigation("/")}
         >
-          Dashboard
-        </h3>
-      </div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/2386/2386408.png"
+            alt="dashboard"
+            className="w-6 mr-2"
+          />
+          <h3
+            className="text-white"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            Dashboard
+          </h3>
+        </div>
+      </Link>
       <Link href="/profile">
         <div
           className={`itemDiv flex flex-row justify-start w-full p-2 py-4 px-4 hover:bg-[#080f11] hover:w-full transition-all rounded-md cursor-pointer ${isActive(
