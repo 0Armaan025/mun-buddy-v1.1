@@ -18,7 +18,7 @@ const PricingComponent = (props: Props) => {
               Best option if you just want a demo.
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">₹20</span>
+              <span className="mr-2 text-5xl font-extrabold">₹19</span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -115,7 +115,7 @@ const PricingComponent = (props: Props) => {
               M.U.N.
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">₹500</span>
+              <span className="mr-2 text-5xl font-extrabold">₹399</span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -227,7 +227,7 @@ const PricingComponent = (props: Props) => {
               Best forever 😉
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">₹1499</span>
+              <span className="mr-2 text-5xl font-extrabold">₹999</span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">

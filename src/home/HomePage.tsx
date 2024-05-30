@@ -6,6 +6,7 @@ import Footer from "@/components/footer/Footer";
 
 import { ThreeDCardDemo } from "@/components/3d-card/3d-card";
 import PricingComponent from "@/components/pricing-component/PricingComponent";
+import Link from "next/link";
 
 const HomePage = () => {
   return (
@@ -33,11 +34,13 @@ const HomePage = () => {
           </h2>
         </div>
         <div className="buttonsDiv mt-4 flex flex-row justify-center items-center ">
-          <input
-            type="button"
-            value="Start simulating"
-            className="startSimulatingButton"
-          />
+          <Link href="/create-or-join">
+            <input
+              type="button"
+              value="Start simulating"
+              className="startSimulatingButton"
+            />
+          </Link>
           <input
             type="button"
             value="Start researching"

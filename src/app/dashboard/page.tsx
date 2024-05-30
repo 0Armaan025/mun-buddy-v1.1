@@ -20,7 +20,7 @@ const DashboardPage = (props: Props) => {
     <>
       <Navbar />
       <div className="dashboardPage flex flex-row justify-start items-start">
-        <LeftSideBar height="138vh" />
+        <LeftSideBar height="189vh" />
         <div className="contentDiv ml-8 mt-2 flex flex-col justify-start items-start">
           <Link href="/#pricing">
             <WobbleCard className="cursor-pointer">
