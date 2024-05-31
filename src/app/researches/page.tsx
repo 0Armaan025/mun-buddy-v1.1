@@ -48,10 +48,12 @@ const ResearchesPage = (props: Props) => {
           </div>
           <br />
           <div className="grid grid-cols-4 gap-4">
+            <Link href='/new-research'>
             <div className="p-4 border rounded shadow bg-[#898686] transition-all cursor-pointer hover:bg-[#bbb7b7] relative flex flex-col justify-center items-center">
               <h2 className="text-xl font-bold">+</h2>
               <h3>New Research</h3>
             </div>
+            </Link>
             {researchTiles.map((tile) => (
               <div
                 key={tile.id}
