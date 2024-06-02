@@ -204,6 +204,7 @@ const RoomPage = () => {
             ) : (
               <img
                 src="https://cdn-icons-png.flaticon.com/128/5683/5683501.png"
+
                 alt="toggle toolbox"
                 className="w-8"
               />
