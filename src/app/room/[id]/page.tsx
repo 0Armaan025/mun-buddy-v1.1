@@ -247,6 +247,8 @@ const RoomPage = () => {
                 selectedPhase === "phase2" ? "active" : ""
               }`}
             >
+              <h5>Motion raised: some random motion</h5>
+              <h4>By: India</h4>
               <button className="svg-button">In Favor</button>
               <button className="svg-button">Against/Opposition</button>
               <button className="svg-button">Substain</button>
@@ -261,13 +263,18 @@ const RoomPage = () => {
                 <input
                   type="button"
                   value="Here"
+                  onClick={writeDraftResolution}
                   className="ml-2 bg-blue-600 p-1 rounded-sm cursor-pointer text-white"
                 />
               </div>
               <button className="svg-button" onClick={writeDraftResolution}>
                 Write a draft resolution
               </button>
-              <button className="svg-button">Upload a draft resolution</button>
+              <input
+                type="file"
+                className="svg-button w-full"
+                // value="Upload a draft resolution"
+              />
             </div>
           </div>
           <button className="toggle-button" onClick={toggleToolbox}>
@@ -367,10 +374,7 @@ const RoomPage = () => {
                 alt="view chits"
               />
             </button>
-            <button
-              onClick={handleViewChits}
-              className="chits-button shadow-md shadow-black drop-shadow-md hover:shadow-lg hover:shadow-black hover:drop-shadow-lg transition text-white p-2 mx-2 rounded"
-            >
+            <button className="chits-button shadow-md shadow-black drop-shadow-md hover:shadow-lg hover:shadow-black hover:drop-shadow-lg transition text-white p-2 mx-2 rounded">
               <img
                 src="https://cdn-icons-png.flaticon.com/128/1828/1828490.png"
                 className="w-6"
@@ -386,6 +390,9 @@ const RoomPage = () => {
         <div className="input-container">
           <label htmlFor="fromCountry">To:</label>
           <select id="fromCountry">
+            <option key={"chair"} value={"Chair"}>
+              Chair
+            </option>
             {chairData.map((chair, index) => (
               <option key={index} value={chair.country}>
                 {chair.country}

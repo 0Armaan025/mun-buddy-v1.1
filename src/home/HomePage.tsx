@@ -41,11 +41,13 @@ const HomePage = () => {
               className="startSimulatingButton"
             />
           </Link>
-          <input
-            type="button"
-            value="Start researching"
-            className="startResearchingButton"
-          />
+          <Link href="/researches">
+            <input
+              type="button"
+              value="Start researching"
+              className="startResearchingButton"
+            />
+          </Link>
         </div>
         <br />
         <center>

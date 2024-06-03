@@ -52,12 +52,12 @@ const DashboardPage = (props: Props) => {
                 Your top 5 common mistakes:
               </h2>
               <br />
-              <ul className="flex flex-col justify-start items-start list-decimal ml-7 ">
-                <li>You ain't enough</li>
-                <li>You are a stupid man</li>
-                <li>Hey, you can't do it</li>
-                <li>Shut up</li>
-                <li>Yeah, go ahead loser</li>
+              <ul className="flex flex-col justify-start items-start list-decimal ml-7 text-sm ">
+                <li>under construction 👷</li>
+                <li>I said, it's under construction 😏</li>
+                <li>Bro, it's UNDER CONSTRUCTION ☠️</li>
+                <li>.......</li>
+                <li>bro,why are u reading?I SAID IT'S UNDER CONSTRUCTION ☠️</li>
               </ul>
             </div>
           </div>

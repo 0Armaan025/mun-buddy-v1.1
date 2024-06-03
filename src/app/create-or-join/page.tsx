@@ -26,10 +26,10 @@ const CreateOrJoinSimulationPage = () => {
   };
 
   return (
-    <div className="page-container">
+    <div className="page-container w-full m-0">
       <Navbar />
-      <div className="content flex flex-row justify-center items-center">
-        <div className="flex flex-col justify-center h-[80vh] w-full items-center bg-purple-300">
+      <div className="content flex flex-row justify-center items-center w-full m-0">
+        <div className="flex flex-col justify-center h-[80vh] w-full items-center m-0 bg-purple-300">
           <div className="p-2 px-4 bg-white rounded-md border-2 border-black">
             <h3 className="text-2xl font-bold">Create a room</h3>
             <input
@@ -67,7 +67,7 @@ const CreateOrJoinSimulationPage = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col justify-center h-[80vh] w-full items-center bg-yellow-300">
+        <div className="flex flex-col justify-center h-[80vh] w-full items-center bg-yellow-300 m-0 p-0">
           <div className="p-2 px-4 bg-white rounded-md border-2 border-black py-3">
             <h3 className="text-2xl font-bold ">Join a room</h3>
             <input

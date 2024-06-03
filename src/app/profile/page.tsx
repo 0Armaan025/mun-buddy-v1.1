@@ -65,7 +65,7 @@ const ProfilePage = (props: Props) => {
 
                   <input
                     type="phone"
-                    placeholder="Eg. 7837433000"
+                    placeholder="Eg. +91 1234567890"
                     className="p-2 rounded-md mt-2 outline-none border-[1.5px] border-black w-full"
                   />
 

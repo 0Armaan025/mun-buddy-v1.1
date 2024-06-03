@@ -162,7 +162,7 @@ const PricingComponent = (props: Props) => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>AI Assistance simulations ( points )</span>
+                <span>Assistance in simulations ( points )</span>
               </li>
               <li className="flex items-center space-x-3">
                 <svg
@@ -275,8 +275,8 @@ const PricingComponent = (props: Props) => {
                   ></path>
                 </svg>
                 <span>
-                  Full AI Assistance in simulations ( Motions, Points, mod,
-                  unmod, resolution creation and so much more!)
+                  Full Assistance in simulations ( Motions, Points, mod, unmod,
+                  resolution creation and so much more!)
                 </span>
               </li>
               <li className="flex items-center space-x-3">
@@ -358,24 +358,6 @@ const PricingComponent = (props: Props) => {
                 <span>
                   Have premium chair/president features including roll call,
                   committee setup, seconds/motions and much more!
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span>
-                  Get a premium feeling dashboard that also gives you AI
-                  features on how to improve your speaking or debating skills.
                 </span>
               </li>
             </ul>
