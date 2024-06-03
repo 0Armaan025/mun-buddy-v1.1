@@ -19,6 +19,18 @@ const RoomPage = () => {
   const [selectedYield, setSelectedYield] = useState("");
   const [selectedDelegate, setSelectedDelegate] = useState("");
   const [showDelegateModal, setShowDelegateModal] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [showChitsModal, setShowChitsModal] = useState(false);
+  const [selectedPhase, setSelectedPhase] = useState("phase1");
+  const [showWriteDraftResolutionModal, setShowWriteDraftResolutionModal] =
+    useState(false);
+
+  const [chits, setChits] = useState([
+    { to: "USA", from: "India", time: "10:00 AM" },
+    { to: "UK", from: "France", time: "10:05 AM" },
+    { to: "USA", from: "India", time: "10:00 AM" },
+    { to: "UK", from: "France", time: "10:05 AM" },
+  ]);
 
   useEffect(() => {
     if (timerActive && timeLeft > 0) {
@@ -35,6 +47,9 @@ const RoomPage = () => {
   const toggleToolbox = () => {
     setToolboxVisible(!toolboxVisible);
   };
+  const handlePhaseChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedPhase(e.target.value);
+  };
 
   const toggleLeftToolbox = () => {
     setLeftToolboxVisible(!leftToolboxVisible);
@@ -46,6 +61,10 @@ const RoomPage = () => {
 
   const closeModal = () => {
     setModalVisible(false);
+  };
+
+  const closeWriteDraftResolutionModal = () => {
+    setShowWriteDraftResolutionModal(false);
   };
 
   const handleRaisePlacard = () => {
@@ -113,6 +132,22 @@ const RoomPage = () => {
     ));
   };
 
+  const handleToggleMute = () => {
+    setIsMuted(!isMuted);
+  };
+
+  const handleViewChits = () => {
+    setShowChitsModal(true);
+  };
+
+  const closeChitsModal = () => {
+    setShowChitsModal(false);
+  };
+
+  const writeDraftResolution = () => {
+    setShowWriteDraftResolutionModal(true);
+  };
+
   return (
     <>
       <div className="page-container">
@@ -134,9 +169,27 @@ const RoomPage = () => {
               <label htmlFor="motion">Raise a motion:</label>
               <select id="motion" onChange={handleMotionChange}>
                 <option value="">Select motion</option>
-                <option value="motion1">Motion 1</option>
-                <option value="motion2">Motion 2</option>
-                <option value="motion3">Motion 3</option>
+                <option value="motion1">Motion to Adjourn</option>
+                <option value="motion2">Motion to Open Debate</option>
+                <option value="motion3">Motion to Close Debate</option>
+                <option value="motion4">Motion for Moderated Caucus</option>
+                <option value="motion5">Motion for Unmoderated Caucus</option>
+                <option value="motion6">Motion for a Roll Call Vote</option>
+                <option value="motion7">Motion to Reconsider</option>
+                <option value="motion8">
+                  Motion to Establish a Working Paper
+                </option>
+                <option value="motion9">Motion to Extend Speaking Time</option>
+                <option value="motion10">Motion to Set the Agenda</option>
+                <option value="motion11">Motion to open the GSL</option>
+                <option value="motion12">Motion for a No-Quorum Call</option>
+                <option value="motion12">Motion to amend resolution</option>
+                <option value="motion12">
+                  Motion to finalize the draft resolution
+                </option>
+                <option value="motion13">
+                  Motion to Remove an Agenda Item
+                </option>
               </select>
             </div>
             <div className="dropdown">
@@ -160,20 +213,62 @@ const RoomPage = () => {
             </div>
             <div className="input-container">
               <label htmlFor="customInput">Custom motion/point:</label>
-              <input type="text" id="customInput" placeholder="Type here..." />
+              <input
+                type="text"
+                id="customInput"
+                placeholder="Eg. The Delegate of India would like to raise a motion to open the GSL."
+              />
               <button onClick={handleCustomSubmit}>Send</button>
             </div>
           </div>
           <div className={`left-toolbox ${leftToolboxVisible ? "" : "hidden"}`}>
             <h3>Status</h3>
-            <button className="svg-button">Present</button>
-            <button className="svg-button">Present and Voting</button>
-            <div className="timer">
-              {timerActive && `Seconds left: ${timeLeft}`}
+            <div className="dropdown">
+              <label htmlFor="phase">Select Phase:</label>
+              <select id="phase" onChange={handlePhaseChange}>
+                <option value="phase1">Phase I</option>
+                <option value="phase2">Phase II</option>
+                <option value="phase3">Phase III</option>
+              </select>
             </div>
-            <button onClick={openModal} className="svg-button">
-              Pass Chit
-            </button>
+            <div
+              className={`phase-options ${
+                selectedPhase === "phase1" ? "active" : ""
+              }`}
+            >
+              <button className="svg-button">Present</button>
+              <button className="svg-button">Present and Voting</button>
+              <button onClick={openModal} className="svg-button">
+                Pass Chit
+              </button>
+            </div>
+            <div
+              className={`phase-options ${
+                selectedPhase === "phase2" ? "active" : ""
+              }`}
+            >
+              <button className="svg-button">In Favor</button>
+              <button className="svg-button">Against/Opposition</button>
+              <button className="svg-button">Substain</button>
+            </div>
+            <div
+              className={`phase-options ${
+                selectedPhase === "phase3" ? "active" : ""
+              }`}
+            >
+              <div className="flex flex-row justify-center items-center">
+                <h1 className="text-lg">Your Resolution: </h1>
+                <input
+                  type="button"
+                  value="Here"
+                  className="ml-2 bg-blue-600 p-1 rounded-sm cursor-pointer text-white"
+                />
+              </div>
+              <button className="svg-button" onClick={writeDraftResolution}>
+                Write a draft resolution
+              </button>
+              <button className="svg-button">Upload a draft resolution</button>
+            </div>
           </div>
           <button className="toggle-button" onClick={toggleToolbox}>
             {toolboxVisible ? (
@@ -204,12 +299,85 @@ const RoomPage = () => {
             ) : (
               <img
                 src="https://cdn-icons-png.flaticon.com/128/5683/5683501.png"
-
                 alt="toggle toolbox"
                 className="w-8"
               />
             )}
           </button>
+          <button className="toggle-button" onClick={toggleToolbox}>
+            {toolboxVisible ? (
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/5683/5683514.png"
+                alt="toggle toolbox"
+                className="w-8"
+              />
+            ) : (
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/5683/5683501.png"
+                alt="toggle toolbox"
+                className="w-8"
+              />
+            )}
+          </button>
+          <button
+            className="toggle-button2"
+            style={{ left: "20px", right: "auto" }}
+            onClick={toggleLeftToolbox}
+          >
+            {leftToolboxVisible ? (
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/5683/5683514.png"
+                alt="toggle toolbox"
+                className="w-8"
+              />
+            ) : (
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/5683/5683501.png"
+                alt="toggle toolbox"
+                className="w-8"
+              />
+            )}
+          </button>
+          <div className="bottom-toolbar flex justify-center items-center fixed bottom-0 mb-4 bg-white shadow-md shadow-black rounded-md p-4">
+            <button
+              onClick={handleToggleMute}
+              className="mute-button shadow-md shadow-black drop-shadow-md hover:shadow-lg hover:shadow-black hover:drop-shadow-lg transition text-white p-2 mx-2 rounded"
+            >
+              {isMuted ? (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/1679/1679975.png"
+                  alt="unmute"
+                  className="w-6"
+                />
+              ) : (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/4903/4903738.png"
+                  className="w-6"
+                  alt="mute"
+                />
+              )}
+            </button>
+            <button
+              onClick={handleViewChits}
+              className="chits-button shadow-md shadow-black drop-shadow-md hover:shadow-lg hover:shadow-black hover:drop-shadow-lg transition text-white p-2 mx-2 rounded"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/1041/1041916.png"
+                className="w-6"
+                alt="view chits"
+              />
+            </button>
+            <button
+              onClick={handleViewChits}
+              className="chits-button shadow-md shadow-black drop-shadow-md hover:shadow-lg hover:shadow-black hover:drop-shadow-lg transition text-white p-2 mx-2 rounded"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/1828/1828490.png"
+                className="w-6"
+                alt="exit"
+              />
+            </button>
+          </div>
         </div>
         <Footer />
       </div>
@@ -270,6 +438,49 @@ const RoomPage = () => {
           </ul>
         </div>
       )}
+      {showChitsModal && (
+        <div className="chits-modal">
+          <button onClick={closeChitsModal} className="close-button">
+            &times;
+          </button>
+          <h3>Received Chits</h3>
+          <ul>
+            {chits.map((chit, index) => (
+              <li key={index}>
+                <p>To: {chit.to}</p>
+                <p>From: {chit.from}</p>
+                <p>Time: {chit.time}</p>
+                <button onClick={() => alert(`Reply to ${chit.from}`)}>
+                  Reply
+                </button>
+                <button onClick={() => alert(`Viewing chit from ${chit.from}`)}>
+                  View
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div className={`modal ${showWriteDraftResolutionModal ? "active" : ""}`}>
+        <h3>Write a draft resolution ( NO HELP , DIY )</h3>
+
+        <div className="input-container">
+          <label htmlFor="chitMessage">Write a draft resolution:</label>
+          <textarea
+            id="chitMessage"
+            placeholder="Type your message here..."
+          ></textarea>
+        </div>
+        <div className="button-container">
+          <button onClick={handleSendChit}>Save</button>
+        </div>
+        <button
+          className="close-button"
+          onClick={closeWriteDraftResolutionModal}
+        >
+          &times;
+        </button>
+      </div>
     </>
   );
 };

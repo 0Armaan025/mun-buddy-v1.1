@@ -1,10 +1,30 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import Select from "react-select";
 import "../../app/globals.css";
 import "./createorjoinsimulationpage.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 
+const countryOptions = [
+  { value: "USA", label: "United States" },
+  { value: "CAN", label: "Canada" },
+  { value: "GBR", label: "United Kingdom" },
+];
+
 const CreateOrJoinSimulationPage = () => {
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [countryAlreadyPicked, setCountryAlreadyPicked] = useState(false);
+
+  const handleCountryChange = (selectedOption: any) => {
+    if (selectedOption) {
+      // Simulate a check if the country is already picked
+      const isAlreadyPicked = selectedOption.value === "USA"; // For example purposes
+      setSelectedCountry(selectedOption);
+      setCountryAlreadyPicked(isAlreadyPicked);
+    }
+  };
+
   return (
     <div className="page-container">
       <Navbar />
@@ -17,6 +37,20 @@ const CreateOrJoinSimulationPage = () => {
               placeholder="Room name"
               className="my-2 border-[1.2px] border-black p-2 rounded-md mt-3"
             />
+            <div className="mt-4">
+              <h4 style={{ fontFamily: "Poppins" }}>
+                Pick your country (delegate):
+              </h4>
+              <Select
+                options={countryOptions}
+                value={selectedCountry}
+                onChange={handleCountryChange}
+                className="mt-2"
+              />
+              {countryAlreadyPicked && (
+                <div className="mt-2 text-red-500">Country already picked</div>
+              )}
+            </div>
             <div className="codeDiv flex flex-row mt-2">
               <h4 style={{ fontFamily: "Poppins" }}>Room Code: </h4>
               <img
@@ -41,10 +75,24 @@ const CreateOrJoinSimulationPage = () => {
               placeholder="Room code"
               className="my-2 border-[1.2px] py-2 border-black p-2 rounded-md mt-3"
             />
-            <br />
+            <div className="mt-4">
+              <h4 style={{ fontFamily: "Poppins" }}>
+                Pick your country (delegate):
+              </h4>
+              <Select
+                options={countryOptions}
+                value={selectedCountry}
+                onChange={handleCountryChange}
+                className="mt-2"
+              />
+              {countryAlreadyPicked && (
+                <div className="mt-2 text-red-500">Country already picked</div>
+              )}
+            </div>
+
             <input
               type="button"
-              value="Create!"
+              value="Join!"
               style={{ fontFamily: "Poppins" }}
               className="mt-4 bg-[#d8b4fe] transition-all hover:bg-[#a047ff] mb-4 font-bold text-black hover:text-white p-2 rounded-md cursor-pointer w-60"
             />
