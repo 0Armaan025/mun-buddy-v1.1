@@ -16,14 +16,30 @@ const RoomPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [timerActive, setTimerActive] = useState(true);
   const [timeLeft, setTimeLeft] = useState(5);
+  const [raisedPlacardDelegate, setRaisedPlacardDelegate] = useState<
+    string | null
+  >(null);
+
   const [selectedYield, setSelectedYield] = useState("");
   const [selectedDelegate, setSelectedDelegate] = useState("");
   const [showDelegateModal, setShowDelegateModal] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [showChitsModal, setShowChitsModal] = useState(false);
   const [selectedPhase, setSelectedPhase] = useState("phase1");
+  const [speakerSpeakingTime, setSpeakerSpeakingTime] = useState(90);
+  const [agenda, setAgenda] = useState("");
+  const [isPlacardRaised, setIsPlacardRaised] = useState(false);
+
+  const [showSpeakingTimeModal, setShowSpeakingTimeMOdal] = useState(false);
   const [showWriteDraftResolutionModal, setShowWriteDraftResolutionModal] =
     useState(false);
+  const [showModeratedCaucusDetails, setShowModeratedCaucusDetails] =
+    useState(false);
+
+  const [showUnModeratedCaucusDetails, setShowUnModeratedCaucusDetails] =
+    useState(false);
+
+  const [showAgendaModal, setShowAgendaModal] = useState(false);
 
   const [chits, setChits] = useState([
     { to: "USA", from: "India", time: "10:00 AM" },
@@ -67,8 +83,36 @@ const RoomPage = () => {
     setShowWriteDraftResolutionModal(false);
   };
 
-  const handleRaisePlacard = () => {
-    alert("Placard raised!");
+  const closeModCaucusModal = () => {
+    setShowModeratedCaucusDetails(false);
+  };
+
+  const closeUnModCaucusModal = () => {
+    setShowUnModeratedCaucusDetails(false);
+  };
+
+  const closeAgendaModal = () => {
+    setShowAgendaModal(false);
+  };
+  const handleSpeakerTimeChange = (e: any) => {
+    if (e.target.value == "time1") {
+      setSpeakerSpeakingTime(60);
+    } else if (e.target.value == "time2") {
+      setSpeakerSpeakingTime(90);
+    } else if (e.target.value == "time3") {
+      setSpeakerSpeakingTime(120);
+    }
+  };
+
+  const closeSpeakingTimeModal = () => {
+    setShowSpeakingTimeMOdal(false);
+  };
+
+  const handleRaisePlacard = (country: string) => {
+    setIsPlacardRaised(!isPlacardRaised);
+    setRaisedPlacardDelegate((prevCountry) =>
+      prevCountry === country ? null : country
+    );
   };
 
   const handleYieldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -85,7 +129,17 @@ const RoomPage = () => {
   };
 
   const handleMotionChange = (e: any) => {
-    alert(`Motion raised: ${e.target.value}`);
+    if (e.target.value == "motion4") {
+      setShowModeratedCaucusDetails(true);
+    } else if (e.target.value == "motion5") {
+      setShowUnModeratedCaucusDetails(true);
+    } else if (e.target.value == "motion9") {
+      setShowSpeakingTimeMOdal(true);
+    } else if (e.target.value == "motion10") {
+      setShowAgendaModal(true);
+    } else {
+      alert("This feature is under construction!");
+    }
   };
 
   const handlePointChange = (e: any) => {
@@ -121,15 +175,22 @@ const RoomPage = () => {
     { country: "Australia", role: "Delegate" },
   ];
 
-  const renderChairs = (num: any, side: any) => {
-    return Array.from({ length: num }).map((_, index) => (
-      <div key={index} className={`chair ${side}-chair`}>
-        {index + 1}
-        <div className="tooltip">
-          {chairData[index].country}, {chairData[index].role}
+  const renderChairs = (num: number, side: string) => {
+    return Array.from({ length: num }).map((_, index) => {
+      const chair = chairData[index];
+      const isHighlighted = raisedPlacardDelegate === chair.country;
+      return (
+        <div
+          key={index}
+          className={`chair ${side}-chair ${isHighlighted ? "highlight" : ""}`}
+        >
+          {index + 1}
+          <div className="tooltip">
+            {chair.country}, {chair.role}
+          </div>
         </div>
-      </div>
-    ));
+      );
+    });
   };
 
   const handleToggleMute = () => {
@@ -164,7 +225,9 @@ const RoomPage = () => {
           </div>
           <div className={`toolbox ${toolboxVisible ? "" : "hidden"}`}>
             <h3>Toolbox</h3>
-            <button onClick={handleRaisePlacard}>Raise Your Placard</button>
+            <button onClick={() => handleRaisePlacard("France")}>
+              {isPlacardRaised ? "Lower Placard" : "Raise Your Placard"}
+            </button>
             <div className="dropdown">
               <label htmlFor="motion">Raise a motion:</label>
               <select id="motion" onChange={handleMotionChange}>
@@ -381,6 +444,9 @@ const RoomPage = () => {
                 alt="exit"
               />
             </button>
+            <div className="flex flex-row bg-slate-200 mt-[0.15rem] ml-1 drop-shadow-md hover:shadow-lg hover:shadow-black hover:drop-shadow-lg shadow-black shadow-md justify-center items-center h-full w-32 p-1 transition-all cursor-pointer py-[0.4rem] rounded-md">
+              <h3 className="text-xl">00:00:40</h3>
+            </div>
           </div>
         </div>
         <Footer />
@@ -485,6 +551,105 @@ const RoomPage = () => {
           className="close-button"
           onClick={closeWriteDraftResolutionModal}
         >
+          &times;
+        </button>
+      </div>
+      <div
+        className={`modal ${showModeratedCaucusDetails ? "active" : ""}`}
+        style={{ width: "260px" }}
+      >
+        <h3>Moderated Caucus Details:</h3>
+
+        <div className="input-container">
+          <label htmlFor="chitMessage">Total Time(in minutes):</label>
+          <input type="number" className="h-auto w-full" />
+          <br />
+          <label htmlFor="chitMessage mt-8" style={{ marginTop: "18px" }}>
+            Speaking time for each delegate (in minutes):
+          </label>
+          <input type="number" className="h-auto w-full" />
+          <br />
+          <label htmlFor="chitMessage mt-8" style={{ marginTop: "18px" }}>
+            Topic:
+          </label>
+          <input type="number" className="h-auto w-full" />
+        </div>
+        <div className="button-container">
+          <button onClick={handleSendChit}>Propose!</button>
+        </div>
+        <button className="close-button" onClick={closeModCaucusModal}>
+          &times;
+        </button>
+      </div>
+      <div
+        className={`modal ${showUnModeratedCaucusDetails ? "active" : ""}`}
+        style={{ width: "260px" }}
+      >
+        <h3>Unmoderated Caucus Details:</h3>
+
+        <div className="input-container">
+          <label htmlFor="chitMessage">Total Time(in minutes):</label>
+          <input type="number" className="h-auto w-full" />
+          <br />
+
+          <label htmlFor="chitMessage mt-8" style={{ marginTop: "18px" }}>
+            For:
+          </label>
+          <input
+            type="number"
+            className="h-auto w-full"
+            placeholder="Optional"
+          />
+        </div>
+        <div className="button-container">
+          <button onClick={handleSendChit}>Propose!</button>
+        </div>
+        <button className="close-button" onClick={closeUnModCaucusModal}>
+          &times;
+        </button>
+      </div>
+      <div
+        className={`modal ${showSpeakingTimeModal ? "active" : ""}`}
+        style={{ width: "260px" }}
+      >
+        <h3>New Speaking time for each speaker in GSL:</h3>
+
+        <div className="input-container">
+          <label htmlFor="chitMessage">Time(default: 90 seconds):</label>
+          <select id="time" onChange={handleSpeakerTimeChange}>
+            <option value="">Select time</option>
+            <option value="time1">60 seconds</option>
+            <option value="time2">90 seconds</option>
+            <option value="time3">120 seconds</option>
+          </select>
+          <br />
+        </div>
+        <div className="button-container">
+          <button onClick={handleSendChit}>Propose!</button>
+        </div>
+        <button className="close-button" onClick={closeSpeakingTimeModal}>
+          &times;
+        </button>
+      </div>
+      <div
+        className={`modal ${showAgendaModal ? "active" : ""}`}
+        style={{ width: "260px" }}
+      >
+        <h3>Propose to set an agenda:</h3>
+
+        <div className="input-container">
+          <label htmlFor="chitMessage">Write agenda:</label>
+          <input
+            type="text"
+            className="h-auto w-full"
+            onChange={(e: any) => setAgenda(e.target.value)}
+          />
+          <br />
+        </div>
+        <div className="button-container">
+          <button onClick={handleSendChit}>Propose!</button>
+        </div>
+        <button className="close-button" onClick={closeAgendaModal}>
           &times;
         </button>
       </div>

@@ -59,6 +59,11 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.chair.highlight {
+  border: 2px solid yellow; /* Example styling */
+  background-color: lightyellow;
+}
+
 .chair .tooltip {
   visibility: hidden;
   width: 120px;
