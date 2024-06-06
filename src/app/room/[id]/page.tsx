@@ -4,11 +4,12 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import "./roomidpage.css";
 import { usePathname } from "next/navigation";
+import ChairRoomPage from "@/chair-room/chair-room";
 
 const RoomPage = () => {
   const pathName = usePathname();
   const roomPath = pathName.split("/room/")[1];
-
+  const [isChair, setIsChair] = useState(true);
   const [leftChairs, setLeftChairs] = useState(4);
   const [rightChairs, setRightChairs] = useState(4);
   const [toolboxVisible, setToolboxVisible] = useState(true);
@@ -208,6 +209,14 @@ const RoomPage = () => {
   const writeDraftResolution = () => {
     setShowWriteDraftResolutionModal(true);
   };
+
+  if (isChair) {
+    return (
+      <>
+        <ChairRoomPage />
+      </>
+    );
+  }
 
   return (
     <>
