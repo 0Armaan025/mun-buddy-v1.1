@@ -1,27 +1,46 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-body {
-  overflow-x: hidden;
-}
-
-.page-container {
+.chair-room-page {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-
-.content {
-  flex: 1;
 }
 
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
 }
 
-.footer {
-  position: sticky;
-  bottom: 0;
-  z-index: 1000;
+.main-content {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+}
+
+.left-div {
+  flex: 1;
+  background-color: #f5f5f5;
+  border: 1px solid black;
+  padding: 1rem;
+  margin-right: 1rem;
+}
+
+.right-div {
+  flex: 1;
+  padding: 1rem;
+}
+
+.delegates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.delegate {
+  text-align: center;
+}
+
+.delegate img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
