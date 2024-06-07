@@ -27,8 +27,13 @@
 }
 
 .right-div {
-  flex: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  border: 2px solid white;
+  border-radius: 2px;
   padding: 1rem;
+  margin-right: 1rem;
+  overflow: auto; /* Handle overflow */
 }
 
 .delegates-grid {
@@ -58,5 +63,4 @@
   font-size: 1rem;
 }
 .bottom-toolbar {
-  
 }

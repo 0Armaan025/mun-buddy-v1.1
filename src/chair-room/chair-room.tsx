@@ -55,17 +55,14 @@ const ChairRoomPage: React.FC = () => {
               ))}
             </div>
           </div>
-          <div className="right-div">
-            <p>hi there</p>
+          <div className="right-div ">
+            <h3 className="text-white text-2xl ">Session Details</h3>
           </div>
         </div>
 
         <Footer />
       </div>
-      <div
-        className="bottom-toolbar flex justify-center items-center fixed bottom-0 left-0 right-0 mb-4 bg-white shadow-md shadow-black rounded-md p-4  "
-        style={{ marginLeft: "22rem", marginRight: "22rem" }}
-      >
+      <div className="bottom-toolbar flex justify-center items-center fixed bottom-0 mb-4 bg-white shadow-md shadow-black rounded-md p-4  ">
         <button
           onClick={handleToggleMute}
           className="mute-button shadow-md shadow-black drop-shadow-md hover:shadow-lg hover:shadow-black hover:drop-shadow-lg transition text-white p-2 mx-2 rounded"
