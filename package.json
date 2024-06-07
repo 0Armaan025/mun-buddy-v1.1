@@ -16,8 +16,10 @@
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
+    "react-resizable": "^3.0.5",
     "react-select": "^5.8.0",
     "react-select-country-list": "^2.2.3",
+    "react-split-pane": "^0.1.92",
     "simplex-noise": "^4.0.1",
     "tailwind-merge": "^2.3.0",
     "victory": "^37.0.2"
@@ -26,6 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-resizable": "^3.0.7",
     "@types/react-select-country-list": "^2.2.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",

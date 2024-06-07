@@ -17,52 +17,46 @@
 }
 
 .left-div {
-  flex: 1;
-  background-color: whitesmoke;
-  border: 1px solid black;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  border: 2px solid white;
+  border-radius: 2px;
   padding: 1rem;
-  /* border-radius: 10px; */
   margin-right: 1rem;
+  overflow: auto; /* Handle overflow */
 }
 
 .right-div {
   flex: 1;
   padding: 1rem;
 }
+
 .delegates-grid {
   display: grid;
-
   grid-template-columns: repeat(3, minmax(0, 1fr));
-
   gap: 1rem;
 }
 
-.delegate {
+.delegate-card {
   text-align: center;
   position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: white;
+  border: 2px solid #ddd;
 }
 
-.delegate img {
+.delegate-image {
   width: 100%;
   height: auto;
-  border-radius: 5px;
 }
 
-.tooltip {
-  position: absolute;
-  bottom: 2px;
-  opacity: 0;
-  left: 2px;
+.delegate-country {
+  padding: 0.5rem;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
-  font-size: 0.75rem;
-  border-radius: 0.25rem;
-  padding: 0.25rem;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
+  font-size: 1rem;
 }
-
-.delegate:hover .tooltip {
-  opacity: 1;
-  visibility: visible;
+.bottom-toolbar {
+  
 }
