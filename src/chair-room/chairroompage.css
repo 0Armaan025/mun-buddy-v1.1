@@ -18,9 +18,10 @@
 
 .left-div {
   flex: 1;
-  background-color: #f5f5f5;
+  background-color: whitesmoke;
   border: 1px solid black;
   padding: 1rem;
+  /* border-radius: 10px; */
   margin-right: 1rem;
 }
 
@@ -28,10 +29,11 @@
   flex: 1;
   padding: 1rem;
 }
-
 .delegates-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
   gap: 1rem;
 }
 
