@@ -39,10 +39,30 @@
 
 .delegate {
   text-align: center;
+  position: relative;
 }
 
 .delegate img {
   width: 100%;
   height: auto;
   border-radius: 5px;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 2px;
+  opacity: 0;
+  left: 2px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.delegate:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
 }
