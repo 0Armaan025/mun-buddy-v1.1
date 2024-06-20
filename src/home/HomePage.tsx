@@ -181,7 +181,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <PricingComponent />
+        {/* <PricingComponent /> */}
       </div>
       <Footer />
     </div>

@@ -57,6 +57,32 @@ const ChairRoomPage: React.FC = () => {
           </div>
           <div className="right-div ">
             <h3 className="text-white text-2xl ">Session Details</h3>
+            <div className="flex flex-row justify-center  mt-2 items-center">
+              <button
+                className="specialBtn p-2  rounded-sm ml-2 specialBtn"
+                style={{ background: "white" }}
+              >
+                Delegates
+              </button>
+              <button
+                className="specialBtn p-2  rounded-sm ml-2 specialBtn"
+                style={{ background: "white" }}
+              >
+                GSL
+              </button>
+              <button
+                className="specialBtn p-2  rounded-sm ml-2 specialBtn"
+                style={{ background: "white" }}
+              >
+                Moderated
+              </button>
+              <button
+                className="specialBtn p-2  rounded-sm m-2 ml-2 "
+                style={{ background: "white" }}
+              >
+                Unmoderated
+              </button>
+            </div>
           </div>
         </div>
 
